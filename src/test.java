@@ -7,4 +7,7 @@ public class test {
 		System.out.println("hello");
 	}
 
+	public static void main(String[] args) {
+		System.out.println("test project");
+	}
 }

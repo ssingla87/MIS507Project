@@ -59,7 +59,7 @@ public class TestSearchMovie {
 		
 		
 		ISearchMovie searchMovie = new SearchMovieByRating();
-		List<Movie> moviesListWithRatingFive = searchMovie.searchWithRating(Rating.FIVE);
+		List<Movie> moviesListWithRatingFive = searchMovie.searchWithRating(4.2);
 		//assertThat(moviesListWithRatingFive, matcher);
 		
 	}

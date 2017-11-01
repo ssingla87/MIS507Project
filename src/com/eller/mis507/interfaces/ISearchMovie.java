@@ -16,6 +16,6 @@ public interface ISearchMovie {
 	
 	public List<Movie> searchWithRating();
 	
-	public List<Movie> searchWithRating(Rating rating);
+	public List<Movie> searchWithRating(double d);
 
 }

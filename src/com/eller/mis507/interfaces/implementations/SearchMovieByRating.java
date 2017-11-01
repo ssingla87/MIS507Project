@@ -16,7 +16,7 @@ import com.eller.mis507.searchcriteria.Rating;
 public class SearchMovieByRating implements ISearchMovie {
 
 	@Override
-	public List<Movie> searchWithRating(Rating rating) {
+	public List<Movie> searchWithRating(double rating) {
 		// TODO Auto-generated method stub
 		return null;
 	}

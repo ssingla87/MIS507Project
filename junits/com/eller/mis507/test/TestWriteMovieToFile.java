@@ -1,6 +1,8 @@
 package com.eller.mis507.test;
 import static org.junit.Assert.*;
 
+import java.io.PrintWriter;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,6 +52,8 @@ public class TestWriteMovieToFile {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		PrintWriter pw = new PrintWriter("Movies.txt");
+		pw.close();
 	}
 
 	@Test

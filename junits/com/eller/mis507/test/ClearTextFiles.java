@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ TestCollectionUtilsFilter.class, TestCreateMovie.class, TestReadMovieFromFile.class,
-		TestSearchMovie.class, TestWriteMovieToFile.class })
+		TestFilterMovie.class, TestWriteMovieToFile.class })
 public class ClearTextFiles {
 
 	@BeforeClass

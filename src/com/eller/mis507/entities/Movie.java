@@ -26,9 +26,8 @@ public class Movie implements Serializable {
 
 	private String name;
 	private Genre genre;
-	private List<Rating> ratings = new ArrayList<Rating>();
-	private float Score;
-
+	private List<Rating> ratings;
+	private double score;
 
 	/**
 	 * @param name
@@ -44,6 +43,8 @@ public class Movie implements Serializable {
 		super();
 		this.name = name;
 		this.genre = genre;
+		this.score = 0;
+		ratings = new ArrayList<Rating>();
 	}
 
 	/**
@@ -63,13 +64,40 @@ public class Movie implements Serializable {
 	/**
 	 * @return the score
 	 */
-	public float getScore() {
-		return Score;
+	public double getScore() {
+		return score;
 	}
+	
+	/**
+	 * @param rating the score to set
+	 */
+	private void setScore(Rating rating) {
+		//Score = rating;
+		switch (rating) {
+			case ONE:
+				score = ((score*(ratings.size()-1) + 1))/ratings.size();
+				break;
+			case TWO:
+				score = ((score*(ratings.size()-1) + 2))/ratings.size();
+				break;
+			case THREE:
+				score = ((score*(ratings.size()-1) + 3))/ratings.size();
+				break;
+			case FOUR:
+				score = ((score*(ratings.size()-1) + 4))/ratings.size();
+				break;
+			case FIVE:
+				score = ((score*(ratings.size()-1) + 5))/ratings.size();
+				break;
+		
+		}
+	}
+	
 	public void addRating(Rating rating) {
 		// TODO Auto-generated method stub
 		ratings.add(rating);
-		//TODO - Observer pattern to update the rating
+		setScore(rating);
+		//TODO - Observer pattern to update the Score
 	}
 
 	/* (non-Javadoc)
@@ -77,7 +105,7 @@ public class Movie implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Movie [name=" + name + ", genre=" + genre + ", Score=" + Score + "]";
+		return "Movie [name=" + name + ", genre=" + genre + ", Score=" + score + "]";
 	}
 
 	

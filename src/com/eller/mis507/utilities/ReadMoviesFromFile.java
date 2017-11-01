@@ -19,7 +19,7 @@ import com.eller.mis507.exception.MoviesFileNotFoundException;
  * @author sumit
  *
  */
-public class ReadMovieFromFile {
+public class ReadMoviesFromFile {
 
 	public List<Movie> readAll(String string) throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
 		// TODO Auto-generated method stub

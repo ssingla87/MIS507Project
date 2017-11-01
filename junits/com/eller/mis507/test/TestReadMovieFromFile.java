@@ -16,7 +16,7 @@ import org.junit.Test;
 import com.eller.mis507.entities.Movie;
 import com.eller.mis507.exception.MoviesFileContainingOtherObjectsException;
 import com.eller.mis507.exception.MoviesFileNotFoundException;
-import com.eller.mis507.utilities.ReadMovieFromFile;
+import com.eller.mis507.utilities.ReadMoviesFromFile;
 
 /**
  * @author sumit
@@ -54,14 +54,14 @@ public class TestReadMovieFromFile {
 
 	@Test (expected = MoviesFileNotFoundException.class)
 	public void ReadFromUnknownFile() throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
-		ReadMovieFromFile readMovieFromFile = new ReadMovieFromFile();
-		readMovieFromFile.readAll("unkown.txt");
+		ReadMoviesFromFile readMoviesFromFile = new ReadMoviesFromFile();
+		readMoviesFromFile.readAll("unkown.txt");
 	}
 	
 	@Test
 	public void ReadAllMoviesFromFile() throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
-		ReadMovieFromFile readMovieFromFile = new ReadMovieFromFile();
-		List<Movie> moviesList = readMovieFromFile.readAll("Movies.txt");
+		ReadMoviesFromFile readMoviesFromFile = new ReadMoviesFromFile();
+		List<Movie> moviesList = readMoviesFromFile.readAll("Movies.txt");
 		assertTrue(moviesList.size() == 1);
 	}
 

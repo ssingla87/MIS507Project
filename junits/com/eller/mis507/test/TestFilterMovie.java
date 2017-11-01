@@ -8,8 +8,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.Predicate;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,26 +15,23 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.eller.mis507.entities.Movie;
+import com.eller.mis507.interfaces.IFilterMovie;
+import com.eller.mis507.interfaces.implementations.FilterMovies;
 import com.eller.mis507.searchcriteria.Genre;
 import com.eller.mis507.searchcriteria.Rating;
-import com.eller.mis507.utilities.ReadMoviesFromFile;
-import com.eller.mis507.utilities.WriteMovieToFile;
 
 /**
  * @author sumit
- * 
- * Ignore this class for final Project
  *
  */
-public class TestCollectionUtilsFilter {
-	
-	List<Movie> moviesList;
+public class TestFilterMovie {
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		
 	}
 
 	/**
@@ -45,6 +40,9 @@ public class TestCollectionUtilsFilter {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
+
+
+	private List<Movie> moviesList;
 
 	/**
 	 * @throws java.lang.Exception
@@ -83,9 +81,8 @@ public class TestCollectionUtilsFilter {
 		moviesList.add(movie3);
 		moviesList.add(movie4);
 		moviesList.add(movie5);
-		
-		System.out.println(moviesList);
 	}
+	
 
 	/**
 	 * @throws java.lang.Exception
@@ -93,13 +90,15 @@ public class TestCollectionUtilsFilter {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void searchMovie() {
+
 		
-		System.out.println(moviesList);
-		//WriteMovieToFile write = new WriteMovieToFile();
+	@Test
+	public void searchMovieByRating() {		
+		
+		IFilterMovie filterMovie = new FilterMovies();
+		List<Movie> moviesListWithRatingFive = filterMovie.filterWithScore(moviesList, 4);
+		System.out.println(moviesListWithRatingFive);
+		assertTrue(moviesListWithRatingFive.size()==1);
 		
 	}
 

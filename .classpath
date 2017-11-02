@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="junits"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/sumit/OneDrive/Documents/Eller MBA/MIS 507/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sumit/OneDrive/Documents/Eller MBA/MIS 507/commons-collections4-4.1-bin/commons-collections4-4.1/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="commons-lang-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

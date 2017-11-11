@@ -3,6 +3,7 @@
  */
 package com.eller.mis507.utilities;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,16 +24,29 @@ public class ReadMoviesFromFile {
 
 	public List<Movie> readAll(String string) throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
 		// TODO Auto-generated method stub
+		boolean fileContainsObjects = true;
 		List<Movie> moviesList = new ArrayList<Movie>();
 		try {
 			FileInputStream fi = new FileInputStream(new File(string));
 			ObjectInputStream oi = new ObjectInputStream(fi);
-			while(true) {
-				if(oi.readObject() instanceof Movie)
-					moviesList.add((Movie)oi.readObject());
-				else
-					throw new MoviesFileContainingOtherObjectsException(string+ " file containing other data than movies object");
+			
+			Object movieFromFile;
+			
+			while(fileContainsObjects ) {
+				try{
+					movieFromFile = oi.readObject();
+					if(movieFromFile instanceof Movie)
+						moviesList.add((Movie)movieFromFile);
+					else
+						throw new MoviesFileContainingOtherObjectsException(string+ " file containing other data than movies objects");
+					
+				} catch (EOFException e) {
+					// TODO Auto-generated catch block
+					fileContainsObjects = false;
+				}
 			}
+			
+			oi.close();
 			
 		}	catch(FileNotFoundException e) {
 			// TODO Auto-generated catch block

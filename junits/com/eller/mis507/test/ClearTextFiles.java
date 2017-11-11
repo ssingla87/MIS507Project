@@ -14,7 +14,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestFilterMovie.class, TestWriteMovieToFile.class })
 public class ClearTextFiles {
 
-	@BeforeClass
+	/*@BeforeClass
 	public static void setUp() throws FileNotFoundException {
 		System.out.println("Runs before all tests in the annotation above.");
 		PrintWriter pw = new PrintWriter("Movies.txt");
@@ -27,6 +27,6 @@ public class ClearTextFiles {
 		System.out.println("Runs after all tests in the annotation above.");
 		PrintWriter pw = new PrintWriter("Movies.txt");
 		pw.close();
-	}
+	}*/
 
 }

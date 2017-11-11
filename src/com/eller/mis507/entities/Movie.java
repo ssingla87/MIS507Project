@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.eller.mis507.notifiers.MovieRatingNotifier;
 import com.eller.mis507.searchcriteria.Genre;
 import com.eller.mis507.searchcriteria.Rating;
 
@@ -14,7 +15,7 @@ import com.eller.mis507.searchcriteria.Rating;
  * @author sumit
  *
  */
-public class Movie implements Serializable {
+public class Movie implements Serializable, MovieRatingNotifier {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -26,8 +27,10 @@ public class Movie implements Serializable {
 
 	private String name;
 	private Genre genre;
-	private List<Rating> ratings;
+	private List<Rating> ratings = new ArrayList<Rating>();
 	private double score;
+
+	private List<User> observers = new ArrayList<User>();
 
 	/**
 	 * @param name
@@ -98,6 +101,7 @@ public class Movie implements Serializable {
 		ratings.add(rating);
 		setScore(rating);
 		//TODO - Observer pattern to update the Score
+		notifyObservers();
 	}
 
 	/* (non-Javadoc)
@@ -106,6 +110,38 @@ public class Movie implements Serializable {
 	@Override
 	public String toString() {
 		return "Movie [name=" + name + ", genre=" + genre + ", Score=" + score + "]";
+	}
+
+	@Override
+	public void register(User user) {
+		// TODO Auto-generated method stub
+		if(!this.observers.contains(user)) {
+			this.observers.add(user);
+		}
+		
+	}
+
+	@Override
+	public void unregister(User user) {
+		// TODO Auto-generated method stub
+		if(this.observers.contains(user)) {
+			this.observers.remove(user);
+		}
+	}
+
+	@Override
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+		for(User user: observers) {
+			user.updateObserver();
+		}
+		
+	}
+
+	@Override
+	public Object getUpdate(User obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

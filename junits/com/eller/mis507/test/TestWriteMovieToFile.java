@@ -52,8 +52,8 @@ public class TestWriteMovieToFile {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		PrintWriter pw = new PrintWriter("Movies.txt");
-		pw.close();
+		/*PrintWriter pw = new PrintWriter("Movies.txt");
+		pw.close();*/
 	}
 
 	@Test

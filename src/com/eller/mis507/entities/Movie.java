@@ -43,7 +43,7 @@ public class Movie implements Serializable {
 		super();
 		this.name = name;
 		this.genre = genre;
-		this.score = 0;
+		this.score = 0; //TODO
 		ratings = new ArrayList<Rating>();
 	}
 

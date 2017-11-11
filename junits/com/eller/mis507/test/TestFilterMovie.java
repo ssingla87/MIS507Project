@@ -15,8 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.eller.mis507.entities.Movie;
-import com.eller.mis507.interfaces.IFilterMovie;
-import com.eller.mis507.interfaces.implementations.FilterMovies;
 import com.eller.mis507.searchcriteria.Genre;
 import com.eller.mis507.searchcriteria.Rating;
 
@@ -94,11 +92,7 @@ public class TestFilterMovie {
 		
 	@Test
 	public void searchMovieByRating() {		
-		
-		IFilterMovie filterMovie = new FilterMovies();
-		List<Movie> moviesListWithRatingFive = filterMovie.filterWithScore(moviesList, 4);
-		System.out.println(moviesListWithRatingFive);
-		assertTrue(moviesListWithRatingFive.size()==1);
+
 		
 	}
 

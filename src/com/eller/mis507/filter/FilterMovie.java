@@ -7,9 +7,16 @@ import com.eller.mis507.filter.interfaces.FilterMovieStrategy;
 
 public class FilterMovie {
 	
-	public List<Movie> filter(FilterMovieStrategy strategy){
+	FilterMovieStrategy strategy;	
+	
+	public FilterMovie(FilterMovieStrategy strategy) {
+		super();
+		this.strategy = strategy;
+	}
+
+	public List<Movie> filter(FilterCriteria criteria, List<Movie> moviesList){
 		
-		return null;
+		return strategy.filter(criteria, moviesList);
 		
 	}
 

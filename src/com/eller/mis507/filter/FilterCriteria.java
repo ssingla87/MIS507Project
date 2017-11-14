@@ -22,7 +22,45 @@ public class FilterCriteria {
 		// TODO Auto-generated method stub
 		return this.genre;
 	}
-	
-	
+
+	public FilterCriteria(Genre genre) {
+		super();
+		this.genre = genre;
+	}
+
+	public FilterCriteria(String name) {
+		super();
+		this.name = name;
+	}
+
+	public FilterCriteria(double score) {
+		super();
+		this.score = score;
+	}
+
+	public FilterCriteria(Genre genre, String name) {
+		super();
+		this.genre = genre;
+		this.name = name;
+	}
+
+	public FilterCriteria(String name, double score) {
+		super();
+		this.name = name;
+		this.score = score;
+	}
+
+	public FilterCriteria(Genre genre, double score) {
+		super();
+		this.genre = genre;
+		this.score = score;
+	}
+
+	public FilterCriteria(Genre genre, String name, double score) {
+		super();
+		this.genre = genre;
+		this.name = name;
+		this.score = score;
+	}
 
 }

@@ -15,6 +15,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.eller.mis507.entities.Movie;
+import com.eller.mis507.filter.FilterCriteria;
+import com.eller.mis507.filter.FilterMovie;
+import com.eller.mis507.filter.implementations.GenreStrategy;
+import com.eller.mis507.filter.implementations.NameAndGenreStrategy;
+import com.eller.mis507.filter.implementations.NameAndScoreStrategy;
+import com.eller.mis507.filter.implementations.NameScoreAndGenreStrategy;
+import com.eller.mis507.filter.implementations.NameStrategy;
+import com.eller.mis507.filter.implementations.ScoreAndGenreStrategy;
+import com.eller.mis507.filter.implementations.ScoreStrategy;
+import com.eller.mis507.filter.interfaces.FilterMovieStrategy;
 import com.eller.mis507.searchcriteria.Genre;
 import com.eller.mis507.searchcriteria.Rating;
 
@@ -41,12 +51,36 @@ public class TestFilterMovie {
 
 
 	private List<Movie> moviesList;
+	private List<Movie> filteredmoviesList;
+	
+	FilterCriteria genreActionFC = new FilterCriteria (Genre.ACTION);
+	FilterCriteria genreAdvFC = new FilterCriteria (Genre.ADVENTURE);
+	FilterCriteria genreComedyFC = new FilterCriteria (Genre.COMEDY);
+	
+	FilterCriteria scoreGreaterThanOneFC = new FilterCriteria (1.0);
+	FilterCriteria scoreGreaterThanTwoFC = new FilterCriteria (2.0);
+	FilterCriteria scoreGreaterThanThreeFC = new FilterCriteria (3.0);
+	FilterCriteria scoreGreaterThanFourFC = new FilterCriteria (4.0);
+	FilterCriteria scoreGreaterThanFiveFC = new FilterCriteria (5.0);
+	
+	FilterMovie filterbygenre = new FilterMovie(new GenreStrategy());
+	FilterMovie filterbyname = new FilterMovie(new NameStrategy());
+	FilterMovie filterbyscore = new FilterMovie(new ScoreStrategy());
+	FilterMovie filterByNameAndGenre = new FilterMovie(new NameAndGenreStrategy());
+	FilterMovie filterByScoreAndGenre = new FilterMovie(new ScoreAndGenreStrategy());
+	FilterMovie filterByNameAndScore = new FilterMovie(new NameAndScoreStrategy());
+	FilterMovie filterByNameScoreAndGenre = new FilterMovie(new NameScoreAndGenreStrategy());
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws Exception {	
+		
+		
+		
+		FilterCriteria genreAndScoreFC = new FilterCriteria (Genre.ACTION,2.0);
+		
 		Movie movie1 = new Movie("TestMovie1", Genre.ACTION);
 		movie1.addRating(Rating.FIVE);
 		movie1.addRating(Rating.ONE);
@@ -91,9 +125,15 @@ public class TestFilterMovie {
 
 		
 	@Test
-	public void searchMovieByRating() {		
-
-		
+	public void filterMovieByGenre() {			
+		filteredmoviesList = filterbygenre.filter(genreActionFC, moviesList);
+		assertTrue(filteredmoviesList.size() == 3);
 	}
-
+	
+	@Test
+	public void filterMovieByGenreAndScore() {	
+		FilterCriteria fc = new FilterCriteria(Genre.ACTION, 4.0);
+		filteredmoviesList = filterByScoreAndGenre.filter(fc, moviesList);
+		assertTrue(filteredmoviesList.size() == 3);
+	}
 }

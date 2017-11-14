@@ -10,6 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.eller.mis507.entities.Movie;
+import com.eller.mis507.searchcriteria.Genre;
+import com.eller.mis507.searchcriteria.Rating;
 import com.eller.mis507.utilities.WriteMovieToFile;
 
 /**
@@ -22,8 +24,10 @@ import com.eller.mis507.utilities.WriteMovieToFile;
  */
 public class TestWriteMovieToFile {
 	
-	Movie fastandfuriousOne;
-
+	private Movie fastandfuriousOne;
+	private Movie fastandfuriousTwo;
+	private final String moviesTextFile = "Movies.txt";
+	private boolean writeOperationSuccessful = false;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -44,7 +48,14 @@ public class TestWriteMovieToFile {
 	@Before
 	public void setUp() throws Exception {
 		
-		fastandfuriousOne =  new Movie("fastandfuriousOne");
+		PrintWriter pw = new PrintWriter("Movies.txt");
+		pw.close();
+		
+		fastandfuriousOne =  new Movie("fastandfuriousOne", Genre.ACTION);
+		fastandfuriousOne.addRating(Rating.FIVE);
+		
+		fastandfuriousTwo =  new Movie("fastandfuriousTwo", Genre.ACTION);
+		fastandfuriousTwo.addRating(Rating.FOUR);
 	}
 
 	/**
@@ -58,8 +69,12 @@ public class TestWriteMovieToFile {
 
 	@Test
 	public void test() {
-		WriteMovieToFile writeMovieToFile = new WriteMovieToFile();
-		writeMovieToFile.write(fastandfuriousOne);
+		WriteMovieToFile writeMovieToFile = WriteMovieToFile.getInstance(moviesTextFile);
+		writeOperationSuccessful = writeMovieToFile.write(fastandfuriousOne);
+		assertTrue(writeOperationSuccessful);
+		writeOperationSuccessful = writeMovieToFile.write(fastandfuriousTwo);
+		assertTrue(writeOperationSuccessful);
+		assertTrue(writeMovieToFile.finish());
 	}
 
 }

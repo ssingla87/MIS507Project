@@ -31,12 +31,16 @@ public class TestMovieRatingNotifier {
 	public void setUp() throws Exception {
 		
 		User sumit = new Audience("Sumit", "Singla", "sumitsingla18@gmail.com", UserType.CRITIQUE);
+		User aditya = new Audience("Aditya", "Rege", "acdcfanman15@gmail.com", UserType.CRITIQUE);
 		
 		Movie fastandfurious = new Movie("fastandfurious");
 //		fastandfurious.addRating(Rating.FIVE);	
 		fastandfurious.register(sumit);
+		fastandfurious.register(aditya);
+		
 		
 		sumit.setMovieToObserve(fastandfurious);
+		aditya.setMovieToObserve(fastandfurious);
 		
 		fastandfurious.addRating(Rating.ONE);	
 		

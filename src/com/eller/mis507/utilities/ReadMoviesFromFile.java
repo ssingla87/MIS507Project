@@ -22,12 +22,12 @@ import com.eller.mis507.exception.MoviesFileNotFoundException;
  */
 public class ReadMoviesFromFile {
 
-	public List<Movie> readAll(String string) throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
+	public List<Movie> readAll(String fileName) throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
 		// TODO Auto-generated method stub
 		boolean fileContainsObjects = true;
 		List<Movie> moviesList = new ArrayList<Movie>();
 		try {
-			FileInputStream fi = new FileInputStream(new File(string));
+			FileInputStream fi = new FileInputStream(new File(fileName));
 			ObjectInputStream oi = new ObjectInputStream(fi);
 			
 			Object movieFromFile;
@@ -38,19 +38,20 @@ public class ReadMoviesFromFile {
 					if(movieFromFile instanceof Movie)
 						moviesList.add((Movie)movieFromFile);
 					else
-						throw new MoviesFileContainingOtherObjectsException(string+ " file containing other data than movies objects");
+						throw new MoviesFileContainingOtherObjectsException(fileName+ " file containing other data than movies objects");
 					
 				} catch (EOFException e) {
 					// TODO Auto-generated catch block
 					fileContainsObjects = false;
 				}
+				
 			}
-			
 			oi.close();
+			System.out.println(moviesList);
 			
 		}	catch(FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			throw new MoviesFileNotFoundException(string+ " file not found");
+			throw new MoviesFileNotFoundException(fileName+ " file not found");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

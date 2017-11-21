@@ -134,6 +134,6 @@ public class TestFilterMovie {
 	public void filterMovieByGenreAndScore() {	
 		FilterCriteria fc = new FilterCriteria(Genre.ACTION, 4.0);
 		filteredmoviesList = filterByScoreAndGenre.filter(fc, moviesList);
-		assertTrue(filteredmoviesList.size() == 3);
+		assertTrue(filteredmoviesList.size() == 0);
 	}
 }

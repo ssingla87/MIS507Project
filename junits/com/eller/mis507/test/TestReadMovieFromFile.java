@@ -62,7 +62,7 @@ public class TestReadMovieFromFile {
 	public void ReadAllMoviesFromFile() throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
 		ReadMoviesFromFile readMoviesFromFile = new ReadMoviesFromFile();
 		List<Movie> moviesList = readMoviesFromFile.readAll("Movies.txt");
-		assertTrue(moviesList.size() == 2);
+		assertTrue(moviesList.size() == 1);
 	}
 
 }

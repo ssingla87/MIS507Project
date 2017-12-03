@@ -58,7 +58,8 @@ public class ReadMoviesFromFile {
 		List<Movie> moviesList = new ArrayList<Movie>();
 		try {
 			Object movieFromFile;
-			
+			fi = new FileInputStream(new File(fileName));
+			oi = new ObjectInputStream(fi);
 			while(fileContainsObjects ) {
 				try{
 					movieFromFile = oi.readObject();

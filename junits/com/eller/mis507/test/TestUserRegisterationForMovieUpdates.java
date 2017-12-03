@@ -14,6 +14,7 @@ import com.eller.mis507.entities.Audience;
 import com.eller.mis507.entities.Movie;
 import com.eller.mis507.entities.User;
 import com.eller.mis507.searchcriteria.Genre;
+import com.eller.mis507.searchcriteria.Rating;
 import com.eller.mis507.searchcriteria.UserType;
 import com.eller.mis507.userRegistration.UserRegisterationFromTheFile;
 import com.eller.mis507.userRegistration.UserRegisterationTemplate;
@@ -73,6 +74,7 @@ public class TestUserRegisterationForMovieUpdates {
 		boolean userSuccessfullyRegistered;
 		userSuccessfullyRegistered = userRegisterationTemplate.register(sumit,fastandfuriousOne);
 		assertTrue(userSuccessfullyRegistered);
+		fastandfuriousOne.addRating(Rating.ONE);
 	}
 	
 	@Test
@@ -80,7 +82,7 @@ public class TestUserRegisterationForMovieUpdates {
 		
 		boolean userSuccessfullyRegistered;
 		userSuccessfullyRegistered = userRegisterationTemplate.register(sumit,fastandfuriousThree);
-		assertTrue(userSuccessfullyRegistered);
+		assertFalse(userSuccessfullyRegistered);
 	}
 	
 

@@ -69,9 +69,9 @@ public class UserRegisterationFromTheFile extends UserRegisterationTemplate {
 	}
 	
 	private boolean RefreshFileSystem(List<Movie> moviesList) {
-		boolean fileFlushed = cleanFile(this.moviesTextFile);		
+		//boolean fileFlushed = cleanFile(this.moviesTextFile);		
 		
-		if(fileFlushed) {
+		if(true) {
 			for (Movie movie : moviesList) {
 				if(!this.writeMovieToFile.write(movie))
 					return false;

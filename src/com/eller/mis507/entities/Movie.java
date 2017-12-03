@@ -109,7 +109,7 @@ public class Movie implements Serializable, MovieRatingNotifier {
 	 */
 	@Override
 	public String toString() {
-		return "Movie [name=" + name + ", genre=" + genre + ", Score=" + score + "]";
+		return "Movie [name=" + name + ", genre=" + genre + ", Score=" + score + ", No of observers=" + observers.size()+"]";
 	}
 
 	@Override

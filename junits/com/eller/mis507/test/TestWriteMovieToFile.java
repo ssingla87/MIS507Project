@@ -28,6 +28,7 @@ public class TestWriteMovieToFile {
 	private Movie fastandfuriousTwo;
 	private final String moviesTextFile = "Movies.txt";
 	private boolean writeOperationSuccessful = false;
+	WriteMovieToFile writeMovieToFile = WriteMovieToFile.getInstance(moviesTextFile);
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -63,18 +64,17 @@ public class TestWriteMovieToFile {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		/*PrintWriter pw = new PrintWriter("Movies.txt");
-		pw.close();*/
+		PrintWriter pw = new PrintWriter("Movies.txt");
+		pw.close();
+		assertTrue(writeMovieToFile.finish());
 	}
 
 	@Test
-	public void test() {
-		WriteMovieToFile writeMovieToFile = WriteMovieToFile.getInstance(moviesTextFile);
+	public void testWrite() {
 		writeOperationSuccessful = writeMovieToFile.write(fastandfuriousOne);
 		assertTrue(writeOperationSuccessful);
 		writeOperationSuccessful = writeMovieToFile.write(fastandfuriousTwo);
 		assertTrue(writeOperationSuccessful);
-		assertTrue(writeMovieToFile.finish());
 	}
 
 }

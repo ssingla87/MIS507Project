@@ -1,5 +1,6 @@
 package com.eller.mis507.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Properties;
 
@@ -15,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 import com.eller.mis507.observers.MovieRatingObserver;
 import com.eller.mis507.searchcriteria.UserType;
 
-public abstract class User implements MovieRatingObserver {
+public abstract class User implements MovieRatingObserver, Serializable {
 
 	private String firstName;
 

@@ -3,30 +3,37 @@ package com.eller.mis507.userRegistration;
 import java.util.List;
 
 import com.eller.mis507.entities.Movie;
+import com.eller.mis507.entities.User;
+import com.eller.mis507.exception.MoviesFileContainingOtherObjectsException;
+import com.eller.mis507.exception.MoviesFileNotFoundException;
 
 public abstract class UserRegisterationTemplate {
 	
-	abstract boolean checkMovie(String movieName);
+	abstract Movie findMovie(Movie movie, List<Movie> moviesList);
 	
 	abstract List<Movie> ReadAllMovies();
 	
-	abstract List<Movie> FilterMovies(List<Movie> moviesList, String movieName);
+	abstract Movie RegisterUser(User user, Movie movieInTheSystem);
 	
-	abstract boolean RegisterUser(String userName, List<Movie> moviesList);
+	abstract boolean updateMovieInSystem(Movie movieInTheSystem, List<Movie> moviesList);
 
-	public final boolean register(String userName, String movieName) {
+	public final boolean register(User user, Movie movie) {
 		
-		List<Movie> moviesList = null;
-		List<Movie> filteredMoviesList = null;
+		Movie movieInTheSystem = null;
+		List<Movie> moviesList = ReadAllMovies();
 		
-		boolean movieExists = checkMovie(movieName);
-		if(movieExists) {
-			moviesList = ReadAllMovies();
+		if(null == moviesList || moviesList.isEmpty()) {
+			return false;
 		}
 		
-		filteredMoviesList = FilterMovies(moviesList, movieName);
+		movieInTheSystem = findMovie(movie, moviesList);
+		if(null != movieInTheSystem) {			
+			movieInTheSystem = RegisterUser(user, movieInTheSystem);
+		} else
+			return false;
 		
-		return RegisterUser(userName, filteredMoviesList);
+		return updateMovieInSystem(movieInTheSystem, moviesList);
+		
 		
 	}
 

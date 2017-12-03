@@ -21,15 +21,42 @@ import com.eller.mis507.exception.MoviesFileNotFoundException;
  *
  */
 public class ReadMoviesFromFile {
+	
+	private static ReadMoviesFromFile instance = null;
+	
+	FileInputStream fi;
+	ObjectInputStream oi;
+
+	private ReadMoviesFromFile(String fileName) {
+		try {
+			fi = new FileInputStream(new File(fileName));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("File not found");
+			e.printStackTrace();
+		}
+		try {
+			oi = new ObjectInputStream(fi);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error initializing stream");
+			e.printStackTrace();			
+		}		
+	}
+	
+	public static synchronized ReadMoviesFromFile getInstance(String fileName) {
+		if (instance == null)
+			instance = new ReadMoviesFromFile(fileName);
+
+		return instance;
+	}
+	
 
 	public List<Movie> readAll(String fileName) throws MoviesFileNotFoundException, MoviesFileContainingOtherObjectsException{
 		// TODO Auto-generated method stub
 		boolean fileContainsObjects = true;
 		List<Movie> moviesList = new ArrayList<Movie>();
 		try {
-			FileInputStream fi = new FileInputStream(new File(fileName));
-			ObjectInputStream oi = new ObjectInputStream(fi);
-			
 			Object movieFromFile;
 			
 			while(fileContainsObjects ) {
@@ -46,7 +73,7 @@ public class ReadMoviesFromFile {
 				}
 				
 			}
-			oi.close();
+			//oi.close(); //Since this is a singeleton class now
 			System.out.println(moviesList);
 			
 		}	catch(FileNotFoundException e) {

@@ -20,6 +20,8 @@ import com.eller.mis507.utilities.WriteMovieToFile;
  *
  */
 public class TestCreateMovie {
+	
+	Movie fastandfurious;
 
 	/**
 	 * @throws java.lang.Exception
@@ -40,6 +42,8 @@ public class TestCreateMovie {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		fastandfurious = new Movie("fastandfurious");
+		fastandfurious.addRating(Rating.FIVE);
 	}
 
 	/**
@@ -49,27 +53,17 @@ public class TestCreateMovie {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-	
+		
 	@Test
 	public void createMovieandSetRating() {
-		
-		Movie fastandfurious = new Movie("fastandfurious");
 		assertTrue(fastandfurious.getName().equals("fastandfurious"));
-		
-		fastandfurious.addRating(Rating.FIVE);	
-		
-		
+		assertTrue(fastandfurious.getScore()==5);	
 	}
 	
 	@Test
-	public void writeMovieToFile() {
-		
-		
-		//WriteMovieToFile write = new WriteMovieToFile();
+	public void createMovieandSetRatingNagetive() {
+		assertFalse(fastandfurious.getName().equals("unknownMovieName"));
+		assertFalse(fastandfurious.getScore()==4);
 		
 	}
 	

@@ -53,6 +53,8 @@ public class TestFilterMovie {
 	private List<Movie> moviesList;
 	private List<Movie> filteredmoviesList;
 	
+	FilterCriteria fcName = new FilterCriteria ("TestMovie1");
+	
 	FilterCriteria genreActionFC = new FilterCriteria (Genre.ACTION);
 	FilterCriteria genreAdvFC = new FilterCriteria (Genre.ADVENTURE);
 	FilterCriteria genreComedyFC = new FilterCriteria (Genre.COMEDY);
@@ -129,6 +131,13 @@ public class TestFilterMovie {
 		filteredmoviesList = filterbygenre.filter(genreActionFC, moviesList);
 		assertTrue(filteredmoviesList.size() == 3);
 	}
+	
+	@Test
+	public void filterMovieByName() {			
+		filteredmoviesList = filterbyname.filter(fcName, moviesList);
+		assertTrue(filteredmoviesList.size() == 1);
+	}
+	
 	
 	@Test
 	public void filterMovieByGenreAndScore() {	

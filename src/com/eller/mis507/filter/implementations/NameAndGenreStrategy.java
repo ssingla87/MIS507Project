@@ -19,7 +19,7 @@ public class NameAndGenreStrategy implements FilterMovieStrategy {
 
 		    @Override
 		    public boolean evaluate(Object o) {
-		        return ((Movie) o).getGenre() == criteria.getGenre() && ((Movie) o).getName() == criteria.getName();
+		        return ((Movie) o).getGenre() == criteria.getGenre() && ((Movie) o).getName().equals(criteria.getName());
 		    }
 
 		});
